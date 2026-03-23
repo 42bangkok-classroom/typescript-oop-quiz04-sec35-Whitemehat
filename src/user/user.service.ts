@@ -38,13 +38,12 @@ export class UserService {
       return found;
     }
 
-    if(field.length > 1){
-        field_s = field.split(',');
+    if (field.length > 1) {
+      field_s = field.split(',');
+    } else {
+      field_s = field;
     }
-    else{
-        field_s = field
-    }
-    
+
     for (const f of field_s) {
       result[f as keyof IUser] = found[f as keyof IUser];
     }
