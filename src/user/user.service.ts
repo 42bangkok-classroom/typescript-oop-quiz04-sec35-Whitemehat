@@ -39,7 +39,7 @@ export class UserService {
 
     const field_s: string[] = field.split(',');
     for (const f of field_s) {
-      result[f] = found[f];
+      result[f as keyof IUser] = found[f as keyof IUser];
     }
     return result;
   }
