@@ -15,7 +15,7 @@ export class UserService {
     return data;
   }
   findOne(id: string, field?: string) {
-    const result = {};
+    const result: Partial<IUser> = {};
     const rawData = fs.readFileSync('./data/users.json', 'utf-8');
     const data = JSON.parse(rawData) as IUser[];
     let found: IUser | null = null;
