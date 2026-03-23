@@ -18,7 +18,6 @@ export class UserService {
     const result: Partial<IUser> = {};
     const rawData = fs.readFileSync('./data/users.json', 'utf-8');
     const data = JSON.parse(rawData) as IUser[];
-    let field_s: string | string[];
     let found: IUser | null = null;
     for (const user of data) {
       if (user.id === id) {
@@ -38,11 +37,7 @@ export class UserService {
       return found;
     }
 
-    if (field.length > 1) {
-      field_s = field.split(',');
-    } else {
-      field_s = field;
-    }
+    const field_s: string[] = Array.isArray(field) ? field : field.split(',');
 
     for (const f of field_s) {
       result[f as keyof IUser] = found[f as keyof IUser];
