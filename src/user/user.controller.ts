@@ -6,6 +6,7 @@ import {
   Query,
   Post,
   HttpCode,
+  ValidationPipe,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -30,7 +31,7 @@ export class UserController {
 
   @Post()
   @HttpCode(201)
-  create(@Body() dto: CreateUserDto) {
+  create(@Body(new ValidationPipe()) dto: CreateUserDto) {
     return this.UserService.create(dto);
   }
 }
